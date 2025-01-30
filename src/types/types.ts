@@ -21,3 +21,23 @@ export interface User {
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
   }
+
+  export interface Post {
+    id: string;
+    content: string;
+    author: User;
+    likes: number;
+    comments: Comment[];
+    createdAt: string;
+    updatedAt: string;
+  }
+  
+
+  export interface Comment {
+    id: string;
+    content: string;
+    author: User;
+    createdAt: string;
+    updatedAt: string;
+  }
+  
