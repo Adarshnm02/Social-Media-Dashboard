@@ -5,14 +5,15 @@ export interface LoginCredentials {
   
 
 export interface User {
-    id: string;      
-    name: string;
-    email: string;
-    avatar?: string;
-    role: 'user' | 'admin';
-    createdAt: string;
-    updatedAt: string;
-  }
+  email: string;
+  password: string;
+}
+    // name: string;
+    // id: string;      
+    // avatar?: string;
+    // role: 'user' | 'admin';
+    // createdAt: string;
+    // updatedAt: string;
   
 
   export interface AuthState {
