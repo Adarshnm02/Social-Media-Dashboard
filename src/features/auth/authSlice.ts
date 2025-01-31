@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AuthState, LoginCredentials, User } from "../../types/types";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 
 
@@ -15,9 +16,13 @@ const initialState: AuthState = {
 
 export const login = createAsyncThunk(
     'auth/login',
-    async (credentials: LoginCredentials) => {
-        const response = await axios.post('/api/auth/login', credentials);
-        return response.data;
+    async (credentials: LoginCredentials, { rejectWithValue }) => {
+        try {
+            const response = await axios.post('/api/auth/login', credentials);
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error)
+        }
     }
 );
 
@@ -52,7 +57,11 @@ const authSlice = createSlice({
                 state.user = action.payload.user;
                 state.token = action.payload.token;
                 localStorage.setItem('token', action.payload.token)
-            });
+            })
+            .addCase(login.rejected, (state) => {
+                state.status = 'failed';
+                toast.error('Login failed');
+              });
     },
 });
 
