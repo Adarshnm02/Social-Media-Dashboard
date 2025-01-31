@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../app/store"
 import { fetchPosts } from "../features/posts/postsSlice"
 import PostForm from "../components/PostForm"
 import PostCard from "../components/PostCard"
+import PostSkeleton from "../components/PostSkelton"
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -19,12 +20,20 @@ const Home = () => {
   if (!Array.isArray(posts)) return <p>Error: posts is not an array</p>
   console.log("out", status, posts)
 
-   return (
+  return (
     <div className="max-w-2xl mx-auto p-4">
       <PostForm />
-      {posts.map((post) => (
-        <PostCard key={post.id} post={post} />
-      ))}
+      {status === 'loading' ? (
+        <>
+          <PostSkeleton />
+          <PostSkeleton />
+        </>
+      ) : (
+        posts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))
+      )}
+
       {hasMore && (
         <button
           onClick={loadMore}

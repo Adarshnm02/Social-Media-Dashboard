@@ -30,7 +30,7 @@ setTimeout(() => {
 
 socket.on('newNotification', (notification: Notification) => {
   store.dispatch(addNotification(notification));
-  toast.success(notification.message || 'new notification' );
+  toast.success('new notification');  //notification.message || 
 });
 
 
