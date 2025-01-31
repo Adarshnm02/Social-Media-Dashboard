@@ -7,10 +7,11 @@ export interface LoginCredentials {
 export interface User {
   email: string;
   password: string;
+  avatar?: string;
+  username?: string;
 }
     // name: string;
     // id: string;      
-    // avatar?: string;
     // role: 'user' | 'admin';
     // createdAt: string;
     // updatedAt: string;
@@ -25,6 +26,7 @@ export interface User {
 
   export interface Post {
     id: string;
+    user: User;
     content: string;
     author: User;
     likes: number;
