@@ -5,13 +5,22 @@ import Register from "./pages/Register"
 import { useSelector } from "react-redux"
 import { RootState } from "./app/store"
 import { Toaster } from "react-hot-toast"
+import Navbar from "./components/NavBar";
 const Home = lazy(() => import('./pages/Home'));
 const Profile = lazy(() => import('./pages/Profile'));
 
 const ProtectedRoute = () => {
   const { token } = useSelector((state: RootState) => state.auth);
-  return token ? <Outlet /> : <Navigate to="/login" replace />
-}
+  // return token ? <Outlet /> : <Navigate to="/login" replace />
+  if (!token) return <Navigate to="/login" replace />;
+  return (
+    <>
+      <Navbar />  {/* Navbar is always shown on protected pages */}
+      <Outlet />
+    </>
+  );
+};
+
 
 const App = () => {
   return (
