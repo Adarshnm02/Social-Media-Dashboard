@@ -1,5 +1,5 @@
 import { Post } from '../types/types';
-// import CommentForm from './CommentForm';
+import CommentForm from './CommentForm';
 // import { useAppDispatch } from '../app/store';
 // import { addComment } from '../features/posts/postsSlice';
 
@@ -25,7 +25,7 @@ const PostCard = ({ post }: Props) => {
       </div>
       <p className="mb-4">{post.content}</p>
       <div className="border-t pt-4">
-        {/* <CommentForm postId={post.id} /> */}
+        <CommentForm postId={post.id} />
         {post.comments.map((comment) => (
           <div key={comment.id} className="mt-2 p-2 bg-gray-50 rounded">
             <p className="text-sm">{comment.text}</p>

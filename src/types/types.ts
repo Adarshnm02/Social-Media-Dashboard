@@ -37,6 +37,7 @@ export interface User {
   
 
   export interface Comment {
+    text: string;
     id: string;
     content: string;
     author: User;
