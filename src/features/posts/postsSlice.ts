@@ -9,17 +9,47 @@ import apiClient from "../../services/apiClient";
 interface PostsState {
     posts: Post[];
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
+    page: number;
+    hasMore: boolean;
 }
-
-const initialState: PostsState = {
-    posts: [],
-    status: 'idle',
+const dummyPost: Post = {
+    id: '1',
+    user: {
+        id: '1',
+        email: 'john@example.com',
+        password: 'password',
+        avatar: 'https://i.pravatar.cc/150?img=1',
+        username: 'john_doe',
+    },
+    content: 'This is a dummy post',
+    author: {
+        id: '1',
+        email: 'john@example.com',
+        password: 'password',
+        avatar: 'https://i.pravatar.cc/150?img=1',
+        username: 'john_doe',
+    },
+    likes: 0,
+    comments: [],
+    createdAt: '2024-01-01',
+    updatedAt: '2024-01-01',
 };
 
 
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-    const response = await axios.get('/api/posts');
-    return response.data;
+const initialState: PostsState = {
+    posts: [dummyPost],
+    status: 'idle',
+    page: 1,
+    hasMore: true,
+};
+
+
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async (page: number) => {
+    const response = await apiClient.get(`/posts?_page=${page}&_limit=5`);
+    return {
+        posts: response.data,
+        hasMore: response.headers['x-total-count'] > page * 5,
+      };
 });
 
 export const createPost = createAsyncThunk('posts/createPost', async (content: string) => {
@@ -47,8 +77,10 @@ const postsSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchPosts.fulfilled, (state, action) => {
-                state.posts = action.payload;
-            })
+                state.posts = [...state.posts, ...action.payload.posts];
+                state.hasMore = action.payload.hasMore;
+                state.page += 1;
+              });
 
     },
 });

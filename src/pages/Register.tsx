@@ -14,7 +14,8 @@ const Register = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         await dispatch(register({
-            email, password
+            email, password,
+            id: ""
         }))
         navigate('/')
     }
