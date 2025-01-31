@@ -1,4 +1,7 @@
 import io from 'socket.io-client';
+import { store } from '../app/store';
+import { addNotification } from '../features/notifications/notificationsSlice';
+import toast from 'react-hot-toast';
 
 const socket = io('http://localhost:3001', {
   autoConnect: false,
@@ -24,5 +27,11 @@ setTimeout(() => {
     });
   });
 }, 0);
+
+socket.on('newNotification', (notification: Notification) => {
+  store.dispatch(addNotification(notification));
+  toast.success(notification.message || 'new notification' );
+});
+
 
 export default socket;
