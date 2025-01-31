@@ -31,8 +31,10 @@ export interface User {
     author: User;
     likes: number;
     comments: Comment[];
+    shares: string,
     createdAt: string;
     updatedAt: string;
+    images?: string[];
   }
   
 

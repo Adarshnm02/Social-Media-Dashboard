@@ -31,8 +31,13 @@ const dummyPost: Post = {
     },
     likes: 0,
     comments: [],
+    shares: '24k',
     createdAt: '2024-01-01',
     updatedAt: '2024-01-01',
+    images: [
+        'https://images.unsplash.com/photo-1707343843437-caacff5cfa74?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1707343843437-caacff5cfa74?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+      ],
 };
 
 

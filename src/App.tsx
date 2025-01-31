@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 import { RootState } from "./app/store"
 import { Toaster } from "react-hot-toast"
 import Navbar from "./components/NavBar";
+import PostForm from "./components/PostForm";
 const Home = lazy(() => import('./pages/Home'));
 const Profile = lazy(() => import('./pages/Profile'));
 
@@ -37,6 +38,7 @@ const App = () => {
             </Suspense>
           } />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/postform" element={<PostForm/>} />
         </Route>
       </Routes>
     </BrowserRouter>

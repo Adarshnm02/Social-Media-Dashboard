@@ -7,15 +7,15 @@ import PostSkeleton from "../components/PostSkelton"
 
 const Home = () => {
   const dispatch = useAppDispatch()
-  const { posts, status, hasMore } = useAppSelector((state) => state.posts)
+  const { posts, status} = useAppSelector((state) => state.posts)
 
   useEffect(() => {
     dispatch(fetchPosts(1));
   }, [dispatch])
 
-  const loadMore = () => {
-    dispatch(fetchPosts(posts.length / 5 + 1));
-  }
+  // const loadMore = () => {
+  //   dispatch(fetchPosts(posts.length / 5 + 1));
+  // }
 
   if (!Array.isArray(posts)) return <p>Error: posts is not an array</p>
   console.log("out", status, posts)
@@ -34,14 +34,14 @@ const Home = () => {
         ))
       )}
 
-      {hasMore && (
+      {/* {hasMore && (
         <button
           onClick={loadMore}
           className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"
         >
           Load More
         </button>
-      )}
+      )} */}
     </div>
   );
 }

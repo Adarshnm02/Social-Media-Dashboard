@@ -1,6 +1,12 @@
 import { Home, Search, Bell, User, PlusSquare } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar() {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: string) => {
+    navigate(path)
+  }
   return (
     <nav className="fixed top-0 w-full bg-white border-b border-gray-200 z-50">
       <div className="max-w-6xl mx-auto px-4">
@@ -23,16 +29,16 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center space-x-4">
-            <button className="p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100">
-              <Home className="h-6 w-6" />
+            <button onClick={() => handleNavigation('/')} className="p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100">
+              <Home  className="h-6 w-6" />
             </button>
-            <button className="p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100">
+            <button onClick={() => handleNavigation('/postform')} className="p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100">
               <PlusSquare className="h-6 w-6" />
             </button>
-            <button className="p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100">
+            <button onClick={() => handleNavigation('/')} className="p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100">
               <Bell className="h-6 w-6" />
             </button>
-            <button className="p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100">
+            <button onClick={() => handleNavigation('/profile')} className="p-2 text-gray-600 hover:text-blue-600 rounded-lg hover:bg-gray-100">
               <User className="h-6 w-6" />
             </button>
           </div>
