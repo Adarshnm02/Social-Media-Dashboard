@@ -5,13 +5,13 @@ export interface LoginCredentials {
   
 
 export interface User {
+  id: string;      
   email: string;
   password: string;
   avatar?: string;
   username?: string;
 }
     // name: string;
-    // id: string;      
     // role: 'user' | 'admin';
     // createdAt: string;
     // updatedAt: string;

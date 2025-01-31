@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../app/store"
 import { fetchPosts } from "../features/posts/postsSlice"
 import PostForm from "../components/PostForm"
-import PostCard from "../components/PostCard"
+// import PostCard from "../components/PostCard"
 
 const Home = () => {
   const dispatch = useAppDispatch()
@@ -17,7 +17,8 @@ const Home = () => {
       {status === 'loading' ? (
         <p>Loading posts...</p>
       ) : (
-        posts.map((post) => <PostCard key={post.id} post={post} />)
+        // posts.map((post) => <PostCard key={post.id} post={post} />)
+        <p>Loading posts...</p>
       )}
     </div>
   )
