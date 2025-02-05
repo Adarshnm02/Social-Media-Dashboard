@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AuthState, LoginCredentials, User } from "../../types/types";
-import axios from "axios";
 import toast from "react-hot-toast";
+import apiClient from "../../services/apiClient";
 
 
 
@@ -18,7 +18,7 @@ export const login = createAsyncThunk(
     'auth/login',
     async (credentials: LoginCredentials, { rejectWithValue }) => {
         try {
-            const response = await axios.post('/api/auth/login', credentials);
+            const response = await apiClient.post('/auth/login', credentials);
             return response.data;
         } catch (error) {
             return rejectWithValue(error)
@@ -29,7 +29,7 @@ export const login = createAsyncThunk(
 export const register = createAsyncThunk(
     'auth/register',
     async (userData: User) => {
-        const response = await axios.post('/api/auth/register', userData);
+        const response = await apiClient.post('/auth/register', userData);
         return response.data;
     }
 );
